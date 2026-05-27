@@ -2214,13 +2214,13 @@ function GlobalCSS() {
       .side-btn {
         display: block; width: 100%; text-align: left;
         background: transparent; border: none; border-left: 2px solid transparent;
-        color: #7a9bbf; padding: 6px 16px; font-size: 11.5px;
+        color: #b8cfe0; padding: 6px 16px; font-size: 11.5px;
         cursor: pointer; transition: all 0.15s; margin-bottom: 1px;
       }
       .side-btn:hover:not(:disabled) {
-        background: rgba(0,119,182,0.15);
+        background: #0077b6;
         color: #ffffff;
-        border-left-color: #0077b6;
+        border-left-color: #4db8e8;
       }
       .side-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
