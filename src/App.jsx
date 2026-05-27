@@ -1928,9 +1928,14 @@ End every response with:
             style={{ height: 34, objectFit: "contain", filter: "brightness(0) invert(0.55)" }} />
           <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
             <button style={S.footerLink} onClick={() => setShowModal(true)}>AI Disclaimer</button>
-            {["·", "Not affiliated with USDA FNS", "·", "Not legal advice", "·", "© 2026 LS Digital Solutions, LLC"].map((t, i) => (
+            {["·", "Not affiliated with USDA FNS", "·", "Not legal advice"].map((t, i) => (
               <span key={i} style={{ fontSize: 12, color: i % 2 === 0 ? N2 : TL }}>{t}</span>
             ))}
+            <span style={{ fontSize: 12, color: N2 }}>·</span>
+            <a href="https://www.LSDigitalSolutions.com" target="_blank" rel="noopener noreferrer" 
+               style={{ fontSize: 12, color: TL, textDecoration: "none" }}>
+              © 2026 LS Digital Solutions, LLC
+            </a>
           </div>
         </footer>
       </div>
@@ -2103,7 +2108,7 @@ End every response with:
             </div>
             <div style={S.inputMeta}>
               <span>⚠️ AI may make mistakes · Verify with official USDA FNS sources · Shift+Enter for new line</span>
-              <span style={{ color: AL, fontWeight: 600 }}>CNPReg AI · <a href="https://www.LSDigitalSolutions.com" title="LS Digital Solutions, LLC" target="_new">LS Digital Solutions, LLC</a></span>
+              <span style={{ color: AL, fontWeight: 600 }}>CNPReg AI · LS Digital Solutions, LLC</span>
             </div>
           </div>
         </div>
