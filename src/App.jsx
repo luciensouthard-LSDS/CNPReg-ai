@@ -102,7 +102,7 @@ IMPORTANT: End every response with this exact line:
 
       const data  = await res.json();
       const reply = data.content?.find(b => b.type === "text")?.text
-        || "Unable to retrieve a response. Please try again.";
+        || `Error: ${data.error?.message || data.error?.type || JSON.stringify(data)}`;
 
       setHistory([...newHistory, { role: "assistant", content: reply }]);
       setMessages(m => [...m, { from: "ai", text: reply }]);
