@@ -24,6 +24,35 @@ const SAMPLE_QS = [
 
 const DISCLAIMER_TEXT = `CNPReg AI is an artificial intelligence tool designed to assist state agency administrators with USDA Child Nutrition Program regulatory questions. As with all AI systems, responses may contain errors, omissions, or outdated information. This tool does not constitute legal advice and should not be used as the sole basis for compliance or programmatic decisions. Always verify responses against official USDA FNS regulations (Code of Federal Regulations), published policy memoranda, and current USDA FNS guidance before taking action. LS Digital Solutions, LLC is not affiliated with, endorsed by, or acting on behalf of the United States Department of Agriculture or the Food and Nutrition Service.`;
 
+// ── TEXT LOGO COMPONENT ──────────────────────────────────────────────────────
+function LSLogo({ variant = "nav" }) {
+  const sizes = {
+    nav:     { ls: 22, ds: 11, llc: 9 },
+    gate:    { ls: 20, ds: 10, llc: 8 },
+    sidebar: { ls: 18, ds: 9,  llc: 8 },
+    footer:  { ls: 16, ds: 9,  llc: 8 },
+  };
+  const sz = sizes[variant] || sizes.nav;
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 6, letterSpacing: 0.3 }}>
+      <div style={{
+        width: sz.ls + 8, height: sz.ls + 8,
+        background: "#0077b6",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        flexShrink: 0,
+      }}>
+        <span style={{ fontFamily: "'Georgia', serif", fontSize: sz.ls, fontWeight: 700, color: "#ffffff", lineHeight: 1 }}>LS</span>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.1 }}>
+        <span style={{ fontFamily: "'Georgia', serif", fontSize: sz.ds, fontWeight: 700, color: "#ffffff", letterSpacing: 2, textTransform: "uppercase" }}>Digital Solutions</span>
+        <span style={{ fontFamily: "'Segoe UI', sans-serif", fontSize: sz.llc, color: "#6b8fa8", letterSpacing: 1.5, textTransform: "uppercase" }}>IT Consulting & Staffing, LLC</span>
+      </div>
+    </div>
+  );
+}
+
+
+
 // ── BRAND TOKENS ─────────────────────────────────────────────────────────────
 const N   = "#001e3c";
 const N2  = "#002a52";
@@ -1751,7 +1780,7 @@ End every response with:
       <div style={S.gate}>
         <div style={S.gateCard}>
           <div style={S.gateHeader}>
-            <img src="/logo.jpg" alt="LS Digital Solutions, LLC" style={S.gateLogo} />
+            <LSLogo variant="gate" />
           </div>
           <div style={S.gateBody}>
             <div style={S.gateProduct}>
@@ -1788,7 +1817,7 @@ End every response with:
 
         {/* NAV */}
         <nav style={S.nav}>
-          <img src="/logo.jpg" alt="LS Digital Solutions, LLC" style={S.navLogo} />
+          <LSLogo variant="nav" />
           <div style={S.navRight}>
             <span style={S.freePill}>FREE TOOL</span>
             <button style={S.navLink} onClick={() => setShowModal(true)}>Disclaimer</button>
@@ -1924,8 +1953,7 @@ End every response with:
 
         {/* FOOTER */}
         <footer style={S.footer}>
-          <img src="/logo.jpg" alt="LS Digital Solutions, LLC"
-            style={{ height: 34, objectFit: "contain", filter: "brightness(0) invert(0.55)" }} />
+          <LSLogo variant="footer" />
           <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
             <button style={S.footerLink} onClick={() => setShowModal(true)}>AI Disclaimer</button>
             {["·", "Not affiliated with USDA FNS", "·", "Not legal advice"].map((t, i) => (
@@ -1960,7 +1988,7 @@ End every response with:
         {sidebarOpen && (
           <aside style={S.sidebar}>
             <div style={S.sideHeader}>
-              <img src="/logo.jpg" alt="LS Digital Solutions, LLC" style={S.sideLogo} />
+              <LSLogo variant="sidebar" />
             </div>
             <div style={S.sideProduct}>
               <span style={{ fontFamily: "'Georgia',serif", fontSize: 20, fontWeight: 700, color: W }}>CNPReg</span>
