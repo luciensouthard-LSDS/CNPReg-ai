@@ -1821,7 +1821,6 @@ End every response with:
           <div style={S.navRight}>
             <span style={S.freePill}>FREE TOOL</span>
             <button style={S.navLink} onClick={() => setShowModal(true)}>Disclaimer</button>
-            <button style={S.navCta} onClick={() => setScreen("chat")}>Open CNPReg AI →</button>
           </div>
         </nav>
 
@@ -1912,7 +1911,7 @@ End every response with:
             <div style={S.cardGrid}>
               {[
                 { n: "01", title: "Ask any regulatory question", body: "Type any question about meal patterns, eligibility, procurement, administrative reviews, civil rights, or program operations." },
-                { n: "02", title: "Receive cited answers", body: "Responses reference exact CFR sections and FNS policy memo numbers — so you can trace every claim to an official source." },
+                { n: "02", title: "Receive cited answers", body: "Responses reference exact CFR section numbers drawn directly from official Federal Register regulatory text — so you can trace every claim to its source." },
                 { n: "03", title: "Verify before you act", body: "Use answers as a research accelerator. Always confirm against official USDA FNS regulations before making compliance decisions." },
               ].map(f => (
                 <div key={f.n} style={S.featureCard}>
