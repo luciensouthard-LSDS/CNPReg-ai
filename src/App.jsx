@@ -45,7 +45,7 @@ function LSLogo({ variant = "nav" }) {
       </div>
       <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.1 }}>
         <span style={{ fontFamily: "'Georgia', serif", fontSize: sz.ds, fontWeight: 700, color: "#ffffff", letterSpacing: 2, textTransform: "uppercase" }}>Digital Solutions</span>
-        <span style={{ fontFamily: "'Segoe UI', sans-serif", fontSize: sz.llc, color: "#6b8fa8", letterSpacing: 1.5, textTransform: "uppercase" }}>IT Consulting & Staffing, LLC</span>
+        <span style={{ fontFamily: "'Segoe UI', sans-serif", fontSize: sz.llc, color: "#6b8fa8", letterSpacing: 1.5, textTransform: "uppercase" }}>Child Nutrition Program Technology Specialist</span>
       </div>
     </div>
   );
