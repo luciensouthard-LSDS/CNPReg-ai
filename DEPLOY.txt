@@ -1,0 +1,165 @@
+# CNPReg AI — Deployment Guide
+# LS Digital Solutions, LLC
+# Updated: May 2026
+
+═══════════════════════════════════════════════════════════════
+WHAT YOU HAVE
+═══════════════════════════════════════════════════════════════
+
+This folder contains everything needed to deploy CNPReg AI:
+
+  cnpreg-deploy/
+  ├── index.html          ← App entry point
+  ├── package.json        ← Dependencies
+  ├── vite.config.js      ← Build config
+  ├── vercel.json         ← Hosting config
+  ├── public/
+  │   └── logo.jpg        ← LS Digital Solutions logo
+  └── src/
+      ├── main.jsx        ← React entry
+      └── App.jsx         ← Full CNPReg AI application
+
+
+═══════════════════════════════════════════════════════════════
+STEP 1 — CREATE A FREE GITHUB ACCOUNT (if you don't have one)
+═══════════════════════════════════════════════════════════════
+
+1. Go to https://github.com
+2. Sign up for a free account
+
+
+═══════════════════════════════════════════════════════════════
+STEP 2 — UPLOAD YOUR FILES TO GITHUB
+═══════════════════════════════════════════════════════════════
+
+1. Log in to GitHub
+2. Click the green "New" button to create a new repository
+3. Name it: cnpreg-ai
+4. Leave it Public (required for free Vercel hosting)
+5. Click "Create repository"
+6. On the next page, click "uploading an existing file"
+7. Drag and drop ALL files and folders from the cnpreg-deploy folder
+   (index.html, package.json, vite.config.js, vercel.json,
+    and the src/ and public/ folders with their contents)
+8. Click "Commit changes"
+
+   ✓ Your code is now on GitHub
+
+
+═══════════════════════════════════════════════════════════════
+STEP 3 — DEPLOY TO VERCEL (FREE)
+═══════════════════════════════════════════════════════════════
+
+1. Go to https://vercel.com
+2. Click "Sign Up" → choose "Continue with GitHub"
+   (This connects Vercel to your GitHub account)
+3. Click "Add New Project"
+4. Find and select your "cnpreg-ai" repository
+5. Vercel will auto-detect the settings — DO NOT change anything
+6. Click "Deploy"
+7. Wait ~60 seconds
+
+   ✓ Your app is now live at a URL like:
+     https://cnpreg-ai.vercel.app
+
+   Test it — it should be fully working at this point.
+
+
+═══════════════════════════════════════════════════════════════
+STEP 4 — ADD YOUR ANTHROPIC API KEY (REQUIRED)
+═══════════════════════════════════════════════════════════════
+
+The AI won't work until you add your API key securely.
+
+1. In Vercel, go to your project → Settings → Environment Variables
+2. Click "Add New"
+3. Name:  VITE_ANTHROPIC_KEY
+   Value: your Anthropic API key (from console.anthropic.com)
+4. Click Save
+5. Go to Deployments → click the three dots → Redeploy
+
+   ✓ The AI is now live and functional
+
+NOTE: You will need an Anthropic account and API key.
+      Get one at: https://console.anthropic.com
+      The API charges per use — estimate ~$5-20/month depending on traffic.
+
+
+═══════════════════════════════════════════════════════════════
+STEP 5 — CONNECT YOUR CUSTOM DOMAIN (Cloudflare → Vercel)
+═══════════════════════════════════════════════════════════════
+
+In Vercel:
+1. Go to your project → Settings → Domains
+2. Type your domain (e.g., cnpreg.ai or cnpregai.com)
+3. Click Add
+4. Vercel will show you DNS records to add — keep this page open
+
+In Cloudflare:
+1. Log in to https://cloudflare.com
+2. Click your domain
+3. Go to DNS → Records → Add Record
+4. Add the records Vercel showed you:
+
+   For an APEX domain (cnpreg.ai):
+   Type: A
+   Name: @
+   Value: 76.76.21.21   (Vercel's IP — confirm on Vercel's screen)
+   Proxy: OFF (click the orange cloud to turn it gray)
+
+   For www subdomain (www.cnpreg.ai):
+   Type: CNAME
+   Name: www
+   Value: cname.vercel-dns.com
+   Proxy: OFF
+
+5. Click Save
+
+   ✓ SSL will be issued automatically by Vercel within 5-10 minutes
+   ✓ Your app will be live at your custom domain
+
+IMPORTANT: Set Cloudflare proxy to OFF (gray cloud) for these records.
+           Vercel handles SSL itself — Cloudflare proxying can interfere.
+
+
+═══════════════════════════════════════════════════════════════
+STEP 6 — LINK FROM YOUR WIX SITE
+═══════════════════════════════════════════════════════════════
+
+1. In Wix editor, add a Button element anywhere on your site
+2. Set the button text to: "CNPReg AI — Free Regulatory Tool"
+3. Link it to your new domain (e.g., https://cnpreg.ai)
+4. Set it to open in a new tab
+
+That's it — visitors on your Wix site can click through to CNPReg AI.
+
+
+═══════════════════════════════════════════════════════════════
+TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════
+
+Domain not resolving after 15 min?
+→ Check that Cloudflare proxy is set to OFF (gray cloud, not orange)
+
+SSL error?
+→ Wait 10 minutes — Vercel auto-provisions SSL, just takes a moment
+
+AI not responding?
+→ Check your API key in Vercel Environment Variables
+→ Make sure you redeployed after adding the key
+
+App not loading?
+→ Check Vercel dashboard for build errors
+→ Make sure all files were uploaded to GitHub (especially src/ folder)
+
+
+═══════════════════════════════════════════════════════════════
+NEED HELP?
+═══════════════════════════════════════════════════════════════
+
+Vercel docs:     https://vercel.com/docs
+Cloudflare DNS:  https://developers.cloudflare.com/dns/
+Anthropic API:   https://docs.anthropic.com
+
+LS Digital Solutions, LLC
+© 2026 — CNPReg AI
