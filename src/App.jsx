@@ -1845,10 +1845,17 @@ End every response with:
             <div style={{ margin: "18px 0", borderTop: `1px solid ${N2}` }} />
             <div style={S.panelLabel}>REGULATORY COVERAGE</div>
             {[
-              "7 CFR Parts 210 · 215 · 220 · 225 · 226 · 245 · 250",
-              "2 CFR Part 200 (Procurement)",
-              "7 CFR Part 15 (Civil Rights)",
-              "USDA FNS SP / CACFP / SFSP Memos",
+              "7 CFR Part 210 — NSLP",
+              "7 CFR Part 215 — Special Milk Program",
+              "7 CFR Part 220 — School Breakfast Program",
+              "7 CFR Part 225 — Summer Food Service Program",
+              "7 CFR Part 226 — CACFP",
+              "7 CFR Part 227 — Nutrition Education",
+              "7 CFR Part 235 — State Admin Expense",
+              "7 CFR Part 240 — Cash in Lieu",
+              "7 CFR Part 245 — Eligibility & Certification",
+              "7 CFR Part 292 — Summer EBT",
+              "Current as of April 13, 2026",
             ].map(l => (
               <div key={l} style={S.panelCovLine}>{l}</div>
             ))}
@@ -1966,7 +1973,7 @@ End every response with:
             ))}
             <div style={S.sideDivider} />
             <div style={S.sideLabel}>KNOWLEDGE BASE</div>
-            {["7 CFR Parts 210–250", "2 CFR Part 200", "FNS Policy Memos", "Updated: May 2025"].map(l => (
+            {["7 CFR Parts 210 · 215 · 220 · 225", "7 CFR Parts 226 · 227 · 235 · 240", "7 CFR Parts 245 · 292", "Current as of Apr 2026"].map(l => (
               <div key={l} style={{ fontSize: 10.5, color: "#3a5570", padding: "2px 16px", fontFamily: "monospace" }}>{l}</div>
             ))}
             <button style={S.sideWarnBtn} onClick={() => setShowModal(true)}>
