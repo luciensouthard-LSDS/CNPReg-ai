@@ -2103,7 +2103,7 @@ End every response with:
             </div>
             <div style={S.inputMeta}>
               <span>⚠️ AI may make mistakes · Verify with official USDA FNS sources · Shift+Enter for new line</span>
-              <span style={{ color: AL, fontWeight: 600 }}>CNPReg AI · LS Digital Solutions, LLC</span>
+              <span style={{ color: AL, fontWeight: 600 }}>CNPReg AI · <a href="https://www.LSDigitalSolutions.com" title="LS Digital Solutions, LLC" target="_new">LS Digital Solutions, LLC</a></span>
             </div>
           </div>
         </div>
