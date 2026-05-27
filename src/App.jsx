@@ -1924,18 +1924,7 @@ End every response with:
           </div>
         </div>
 
-        {/* TOPICS */}
-        <div style={{ padding: "52px 0", background: OF, borderTop: `1px solid ${BD}`, borderBottom: `1px solid ${BD}` }}>
-          <div style={S.inner}>
-            <div style={S.eyebrow}>COVERAGE AREAS</div>
-            <h2 style={S.h2}>Every major program area</h2>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-              {TOPICS.map(t => (
-                <span key={t} style={S.topicTag}>{t}</span>
-              ))}
-            </div>
-          </div>
-        </div>
+
 
         {/* FOOTER CTA */}
         <div style={{ background: N, padding: "56px 40px", textAlign: "center" }}>
