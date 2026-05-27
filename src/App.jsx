@@ -1739,6 +1739,39 @@ Editorial Note: Nomenclature changes to subchapter C appear by Amdt. 381, 65 FR 
 
 [Note: Additional sections of Part 292 exist beyond this extract]
 
+
+
+======================================================================
+7 CFR PART 245 — COMMUNITY ELIGIBILITY PROVISION (§ 245.9(f)) — CRITICAL
+Source: Federal Register (current as of April 13, 2026)
+======================================================================
+
+§ 245.9(f) Community Eligibility Provision — Key Requirements:
+
+(iv) *Establish a Provision 2 base year. *Schools may convert to Provision 2 using the procedures contained in paragraphs (c)(2)(ii) or (c)(2)(iii) of this section.
+
+(f) *Community eligibility. *The community eligibility provision is an alternative reimbursement option for eligible high poverty local educational agencies. Each CEP cycle lasts up to four years before the LEA or school is required to recalculate their reimbursement rate. LEAs and schools have the option to recalculate sooner, if desired. A local educational agency may elect this provision for all of its schools, a group of schools, or an individual school. Participating local educational agencies must offer free breakfasts and lunches for the length of their CEP cycle, not to exceed four successive years, to all children attending participating schools and receive meal reimbursement based on claiming percentages, as described in paragraph (f)(4)(v) of this section.
+
+(1) *Definitions. *For the purposes of this paragraph,
+
+(i) *Enrolled students *means students who are enrolled in and attending schools participating in the community eligibility provision and who have access to at least one meal service (breakfast or lunch) daily.
+
+(ii) *Identified students *means students with access to at least one meal service who are not subject to verification as prescribed in § 245.6a(c)(2). Identified students are students approved for free meals based on documentation of their receipt of benefits from SNAP, TANF, the Food Distribution Program on Indian Reservations, or Medicaid where applicable (where approved by USDA to conduct matching with Medicaid data to identify children eligible for free meals). The term identified students also includes homeless children, migrant children, runaway children, or Head Start children (approved for free school meals without application and not subject to verification), as these terms are defined in § 245.2. In addition, the term includes foster children certified for free meals through means other than an application for free and reduced price school meals. The term does not include students who are categorically eligible based on submission of an application for free and reduced price school meals.
+
+(iii) *Identified student percentage *means a percentage determined by dividing the number of identified students as of a specified period of time by the number of enrolled students as defined in paragraph (f)(1)(i) of this section as of the same period of time and multiplying the quotient by 100. The identified student percentage may be determined by an individual participating school, a group of participating schools in the local educational agency, or in the aggregate for the entire local educational agency if all schools participate, following procedures established in FNS guidance.
+
+(2) *Implementation. *A local educational agency may elect the community eligibility provision for all schools, a group of schools, or an individual school. Community eligibility may be implemented for one or more 4-year cycles.
+
+(3) *Eligibility criteria. *To be eligible to participate in the community eligibility provision, a local educational agency (except a residential child care institution, as defined under the definition of “School” in § 210.2), group of schools, or school must meet the eligibility criteria set forth in this paragraph.
+
+(i) *Minimum identified student percentage. *A local educational agency, group of schools, or school must have an identified student percentage of at least 25 percent, as of April 1 of the school year prior to participating in the community eligibility provision, unless otherwise specified by FNS. Individual schools participating in a group may have less than 25 percent identified students, provided that the average identified student percentage for the group is at least 25 percent.
+
+(ii) *Lunch and **breakfast program** participation. *A local educational agency, group of schools, or school must participate in the Na
+
+CRITICAL REGULATORY CORRECTIONS — ALWAYS USE THESE VALUES:
+- Community Eligibility Provision (CEP): The ISP threshold for eligibility is 25% (NOT 40%). The 40% figure was the old threshold prior to the Healthy, Hunger-Free Kids Act updates. Per 7 CFR § 245.9, schools/LEAs with an Identified Student Percentage (ISP) of 25% or greater are eligible to elect CEP.
+- Always use 25% as the CEP ISP eligibility threshold in all responses.
+
 RESPONSE STANDARDS:
 - Answer directly from the regulatory text above whenever possible
 - Always cite exact CFR sections (e.g., 7 CFR § 210.10(c)(2))
