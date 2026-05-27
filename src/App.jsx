@@ -1848,9 +1848,7 @@ End every response with:
               <button style={S.ctaPrimary} onClick={() => setScreen("chat")}>
                 Start Asking Questions →
               </button>
-              <button style={S.ctaSecondary} onClick={() => setShowModal(true)}>
-                Read AI Disclaimer
-              </button>
+
             </div>
             <div style={S.heroChecks}>
               {["No account required", "No subscription", "No cost — ever", "No data sold"].map(t => (
