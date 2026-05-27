@@ -1813,8 +1813,8 @@ End every response with:
               Child Nutrition Program administrators.
             </p>
             <p style={S.heroSub}>
-              Grounded in 7 CFR regulations, USDA FNS policy memos, and program
-              guidance — cited, precise, and completely free.
+              Grounded in official Federal Register regulatory text across 10 CFR parts —
+              cited, precise, and completely free.
             </p>
             <div style={S.heroCtas}>
               <button style={S.ctaPrimary} onClick={() => setScreen("chat")}>
@@ -2018,8 +2018,8 @@ End every response with:
                   What regulatory question can I help with?
                 </h2>
                 <p style={{ fontSize: 14, color: TM, lineHeight: 1.7, marginBottom: 22 }}>
-                  Type any USDA Child Nutrition Program regulatory question. Answers cite CFR
-                  sections and USDA FNS policy memos.
+                  Type any USDA Child Nutrition Program regulatory question. Answers are drawn
+                  directly from official Federal Register regulatory text, current as of April 2026.
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "center", marginBottom: 20 }}>
                   {SAMPLE_QS.map(q => (
