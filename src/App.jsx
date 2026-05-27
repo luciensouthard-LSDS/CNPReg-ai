@@ -2026,7 +2026,7 @@ End every response with:
             <div style={S.sideDivider} />
             <div style={S.sideLabel}>KNOWLEDGE BASE</div>
             {["7 CFR Parts 210 · 215 · 220 · 225", "7 CFR Parts 226 · 227 · 235 · 240", "7 CFR Parts 245 · 292", "Current as of Apr 2026"].map(l => (
-              <div key={l} style={{ fontSize: 10.5, color: "#3a5570", padding: "2px 16px", fontFamily: "monospace" }}>{l}</div>
+              <div key={l} style={{ fontSize: 10.5, color: "#8ab0c8", padding: "2px 16px", fontFamily: "monospace" }}>{l}</div>
             ))}
             <button style={S.sideWarnBtn} onClick={() => setShowModal(true)}>
               ⚠️ View Disclaimer
