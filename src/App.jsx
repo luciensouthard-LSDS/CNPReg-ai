@@ -305,6 +305,14 @@ End every response with:
           </div>
         </nav>
 
+        {/* MAINTENANCE BANNER */}
+        <div style={{ background: "#fffbeb", borderBottom: "1px solid #fde68a", padding: "10px 40px", display: "flex", alignItems: "center", gap: 10 }}>
+          <span style={{ fontSize: 16, flexShrink: 0 }}>🔧</span>
+          <span style={{ fontSize: 13, color: "#78350f", lineHeight: 1.6 }}>
+            <strong>Scheduled Maintenance:</strong> CNPReg AI is briefly offline and will be fully available on <strong>June 1, 2026</strong>. We apologize for any inconvenience and appreciate your patience.
+          </span>
+        </div>
+
         {/* HERO */}
         <div style={S.hero}>
           <div style={S.heroGrid} />
@@ -782,3 +790,4 @@ const S = {
   modal: { background: W, maxWidth: 560, width: "100%", border: `3px solid ${A}`, boxShadow: "0 32px 80px rgba(0,0,0,0.5)" },
   modalHeader: { background: N, padding: "18px 24px", borderBottom: `3px solid ${A}`, display: "flex", justifyContent: "space-between", alignItems: "center" },
 };
+
