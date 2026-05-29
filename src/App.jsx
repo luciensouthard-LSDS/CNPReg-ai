@@ -220,13 +220,6 @@ export default function App() {
           </div>
         </nav>
 
-        <div style={{ background: WB, borderBottom: "1px solid " + WBD, padding: "10px 40px", display: "flex", alignItems: "center", gap: 10 }}>
-          <span style={{ fontSize: 16, flexShrink: 0 }}>&#128295;</span>
-          <span style={{ fontSize: 13, color: "#78350f", lineHeight: 1.6 }}>
-            <strong>Scheduled Maintenance:</strong> CNPReg AI is briefly offline and will be fully available on <strong>June 1, 2026</strong>. We apologize for any inconvenience and appreciate your patience.
-          </span>
-        </div>
-
         <div style={S.hero}>
           <div style={S.heroGrid} />
           <div style={S.heroInner}>
@@ -373,19 +366,17 @@ export default function App() {
                   <span style={{ fontFamily: "'Georgia',serif", fontSize: 36, fontWeight: 700, color: N }}>CNPReg</span>
                   <span style={{ fontFamily: "'Georgia',serif", fontSize: 36, fontWeight: 700, color: A }}>AI</span>
                 </div>
-                <div style={{ background: WB, border: "1px solid " + WBD, borderLeft: "4px solid " + WN, padding: "24px 28px", maxWidth: 480, textAlign: "left", margin: "0 auto" }}>
-                  <div style={{ fontSize: 20, marginBottom: 12 }}>&#128295;</div>
-                  <div style={{ fontFamily: "'Georgia',serif", fontSize: 17, color: "#78350f", marginBottom: 10, fontWeight: 700 }}>Scheduled Maintenance</div>
-                  <p style={{ fontSize: 14, color: "#78350f", lineHeight: 1.75, marginBottom: 14 }}>
-                    CNPReg AI is briefly offline for scheduled maintenance and will be fully available on <strong>June 1, 2026</strong>.
-                  </p>
-                  <p style={{ fontSize: 13, color: "#92400e", lineHeight: 1.7 }}>
-                    We apologize for any inconvenience. Please check back on June 1.
-                  </p>
+                <h2 style={{ fontFamily: "'Georgia',serif", fontSize: 20, color: N, marginBottom: 10 }}>What can I help you with?</h2>
+                <p style={{ fontSize: 14, color: TM, lineHeight: 1.7, marginBottom: 22 }}>Type any USDA Child Nutrition Program regulatory question. Answers are drawn directly from official Federal Register regulatory text, current as of April 2026.</p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "center", marginBottom: 24 }}>
+                  {SAMPLE_QS.map(q => (
+                    <button key={q} className="prompt-chip" onClick={() => sendMessage(q)} disabled={loading}>{q}</button>
+                  ))}
                 </div>
-                <p style={{ fontSize: 13, color: TL, marginTop: 20 }}>
-                  Questions? Contact <a href="mailto:info@lsdigitalsolutions.com" style={{ color: A }}>info@lsdigitalsolutions.com</a>
-                </p>
+                <div style={{ background: WB, border: "1px solid " + WBD, borderLeft: "4px solid " + WN, padding: "12px 16px", display: "flex", alignItems: "flex-start", gap: 8, textAlign: "left", maxWidth: 480, margin: "0 auto" }}>
+                  <span style={{ fontSize: 14, flexShrink: 0 }}>&#9888;</span>
+                  <span style={{ fontSize: 12, color: "#78350f", lineHeight: 1.6 }}>AI may make mistakes. Verify all guidance against official USDA FNS sources before making compliance decisions.</span>
+                </div>
               </div>
             )}
 
