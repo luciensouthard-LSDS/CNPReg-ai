@@ -1,5 +1,5 @@
 // Vercel Serverless Function — secure proxy for Gemini API
-// Knowledge base and system prompt live here, not in the browser bundle
+// Knowledge base and system instructions live here, never exposed to browser
 
 const KB = `
 
@@ -6747,31 +6747,55 @@ the conditions for approval are being met and to determine the efficiency, econo
 
 [Note: Additional sections of Part 292 continue]`;
 
-const SYSTEM_PROMPT = `You are CNPReg AI, a free regulatory intelligence tool developed by LS Digital Solutions, LLC for state agency administrators of USDA Child Nutrition Programs.
+const SYSTEM_INSTRUCTION = `You are CNPReg AI, a free regulatory intelligence tool developed by LS Digital Solutions, LLC for state agency administrators of USDA Child Nutrition Programs.
 
-Use the following regulatory reference as your primary source. Cite exact CFR sections.
+## YOUR ROLE
+Provide precise, cited answers to regulatory questions about USDA Child Nutrition Programs (NSLP, SBP, CACFP, SFSP, FFVP, Summer EBT, USDA Foods).
 
-CRITICAL: The Community Eligibility Provision (CEP) ISP eligibility threshold is 25% — NOT 40%. The 40% figure was the old threshold prior to the Healthy, Hunger-Free Kids Act updates. Per 7 CFR § 245.9, schools/LEAs with an Identified Student Percentage (ISP) of 25% or greater are eligible to elect CEP.
+## PRIMARY SOURCE
+Use the regulatory knowledge base provided below as your primary source. The knowledge base contains current Federal Register text as of April 13, 2026 for 10 CFR parts.
 
-End every response with: "⚠️ Verify all guidance against official USDA FNS sources before making compliance decisions."
+## CRITICAL FACTUAL RULES — NEVER DEVIATE
+1. **Community Eligibility Provision (CEP) ISP threshold is 25%** — NOT 40%. The 40% figure was the OLD threshold prior to the Healthy, Hunger-Free Kids Act updates. Per 7 CFR § 245.9, schools/LEAs with an Identified Student Percentage (ISP) of 25% or greater are eligible to elect CEP.
+2. **CEP claiming percentage** = ISP × 1.6 (capped at 100%)
+3. **Verification requirements** — SFAs must verify 3% or 3,000 applications (whichever is less) annually.
+4. **Income eligibility** — Free meals at or below 130% FPL; Reduced price 130-185% FPL.
 
-REGULATORY KNOWLEDGE BASE:
+## RESPONSE STANDARDS
+- Always cite exact CFR sections (e.g., "7 CFR § 210.10(c)(2)" or "7 CFR § 226.20(b)")
+- Quote directly from the regulatory text when possible
+- Note when state agency discretion applies or policy varies by state
+- Flag recent changes or areas under revision
+- If a question falls outside the embedded regulatory text, use your trained knowledge but explicitly note it
+- Never guess on compliance matters — if uncertain, say so clearly
+- Format answers with **bold** for key terms and regulatory citations
+- Keep answers concise and actionable for busy state agency administrators
+
+## MANDATORY FOOTER
+End EVERY response with this exact line on its own:
+
+⚠️ Verify all guidance against official USDA FNS sources before making compliance decisions.
+
+## REGULATORY KNOWLEDGE BASE
 
 ` + KB;
 
 export default async function handler(req, res) {
+  // CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
   try {
     const { messages } = req.body;
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
-      return res.status(400).json({ error: 'Invalid request body — messages array required' });
+      return res.status(400).json({ error: 'Invalid request — messages array required' });
     }
 
     const geminiKey = process.env.GEMINI_KEY;
@@ -6780,16 +6804,11 @@ export default async function handler(req, res) {
     }
 
     // Convert chat history to Gemini format
-    // First user message gets the system prompt prepended
-    const geminiContents = messages.map((m, i) => {
-      const role = m.role === 'assistant' ? 'model' : 'user';
-      let text = m.content;
-      // Prepend system prompt to first user message
-      if (i === 0 && role === 'user') {
-        text = SYSTEM_PROMPT + '\n\nUser question: ' + text;
-      }
-      return { role, parts: [{ text }] };
-    });
+    // System instruction is now a separate parameter — cleaner separation
+    const geminiContents = messages.map(m => ({
+      role: m.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: m.content }],
+    }));
 
     const geminiUrl = 'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=' + geminiKey;
 
@@ -6797,8 +6816,14 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        systemInstruction: {
+          parts: [{ text: SYSTEM_INSTRUCTION }],
+        },
         contents: geminiContents,
-        generationConfig: { maxOutputTokens: 4000 },
+        generationConfig: {
+          maxOutputTokens: 4000,
+          temperature: 0.2,
+        },
       }),
     });
 
