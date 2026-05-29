@@ -6841,7 +6841,7 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           contents: geminiContents,
-          generationConfig: { maxOutputTokens: 1000 },
+          generationConfig: { maxOutputTokens: 4000 },
         }),
       });
 
