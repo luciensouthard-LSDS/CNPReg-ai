@@ -354,6 +354,11 @@ export default function App() {
               </div>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              {messages.length > 0 && (
+                <button style={S.topClearBtn} onClick={() => { setMessages([]); setHistory([]); }} title="Clear conversation">
+                  &#10227; Clear
+                </button>
+              )}
               <button style={S.topWarnBtn} onClick={() => setShowModal(true)}>&#9888; Disclaimer</button>
               <button style={S.topHomeBtn} onClick={() => setScreen("landing")}>Home</button>
             </div>
@@ -553,6 +558,7 @@ const S = {
   topbar: { background: N, borderBottom: "2px solid " + A, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", height: 58, flexShrink: 0 },
   menuBtn: { background: "none", border: "none", cursor: "pointer", padding: 6, display: "flex", flexDirection: "column", gap: 4 },
   menuLine: { display: "block", width: 20, height: 2, background: "#8ab0c8" },
+  topClearBtn: { background: "rgba(0,119,182,0.1)", border: "1px solid rgba(0,119,182,0.3)", color: "#4db8e8", padding: "5px 12px", fontSize: 12, cursor: "pointer" },
   topWarnBtn: { background: "rgba(180,83,9,0.1)", border: "1px solid rgba(180,83,9,0.3)", color: "#f59e0b", padding: "5px 12px", fontSize: 12, cursor: "pointer" },
   topHomeBtn: { background: "none", border: "none", color: TL, cursor: "pointer", fontSize: 13 },
   messages: { flex: 1, overflowY: "auto", padding: "28px 32px 12px", display: "flex", flexDirection: "column", gap: 20 },
