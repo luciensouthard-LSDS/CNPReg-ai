@@ -6809,9 +6809,6 @@ export default function App() {
     setLoading(true);
 
     try {
-      const geminiKey = import.meta.env.VITE_GEMINI_KEY;
-      const geminiUrl = "https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=" + geminiKey;
-
       const systemPrompt = "You are CNPReg AI, a free regulatory intelligence tool developed by LS Digital Solutions, LLC for state agency administrators of USDA Child Nutrition Programs. Use the following regulatory reference as your primary source. Cite exact CFR sections. CRITICAL: CEP ISP threshold is 25% NOT 40%. End every response with: Warning: Verify all guidance against official USDA FNS sources before making compliance decisions.\n\n" + KB;
 
       const geminiContents = [
@@ -6836,7 +6833,7 @@ export default function App() {
         });
       }
 
-      const res = await fetch(geminiUrl, {
+      const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
