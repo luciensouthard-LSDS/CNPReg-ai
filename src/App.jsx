@@ -6844,8 +6844,8 @@ export default function App() {
 
       const data = await res.json();
       const reply = (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0] && data.candidates[0].content.parts[0].text)
-        || (data.error && data.error.message)
-        || "Unable to retrieve a response. Please try again.";
+        || (data.error && (data.error.message || data.error))
+        || ("Debug: HTTP " + res.status + " — " + JSON.stringify(data).substring(0, 200));
 
       setHistory([...newHistory, { role: "assistant", content: reply }]);
       setMessages(m => [...m, { from: "ai", text: reply }]);
