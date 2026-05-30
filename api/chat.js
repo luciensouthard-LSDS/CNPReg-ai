@@ -6816,7 +6816,7 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        systemInstruction: {
+        system_instruction: {
           parts: [{ text: SYSTEM_INSTRUCTION }],
         },
         contents: geminiContents,
