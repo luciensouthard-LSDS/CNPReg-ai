@@ -77,11 +77,12 @@ export default function App() {
       const reply = (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0] && data.candidates[0].content.parts[0].text)
         || (data.error && (data.error.message || data.error))
         || ("Debug: HTTP " + res.status + " — " + JSON.stringify(data).substring(0, 200));
+      const sources = data.sources || [];
 
       setHistory([...newHistory, { role: "assistant", content: reply }]);
-      setMessages(m => [...m, { from: "ai", text: reply }]);
+      setMessages(m => [...m, { from: "ai", text: reply, sources: sources }]);
     } catch (err) {
-      setMessages(m => [...m, { from: "ai", text: "Connection error. Please try again." }]);
+      setMessages(m => [...m, { from: "ai", text: "Connection error. Please try again.", sources: [] }]);
     }
 
     setLoading(false);
@@ -142,7 +143,7 @@ export default function App() {
               <span style={{ color: AL }}>AI</span>
             </h1>
             <p style={S.heroTagline}>Instant regulatory answers for state agency Child Nutrition Program administrators.</p>
-            <p style={S.heroSub}>Grounded in official Federal Register regulatory text across 10 CFR parts — cited, precise, and completely free.</p>
+            <p style={S.heroSub}>Grounded in official Federal Register regulatory text across 12 CFR parts — cited, precise, and completely free.</p>
             <div style={S.heroCtas}>
               <button style={S.ctaPrimary} onClick={() => setScreen("chat")}>Start Asking Questions</button>
             </div>
@@ -162,7 +163,7 @@ export default function App() {
             ))}
             <div style={{ margin: "18px 0", borderTop: "1px solid " + N2 }} />
             <div style={S.panelLabel}>REGULATORY COVERAGE</div>
-            {["7 CFR Part 210 — NSLP","7 CFR Part 215 — Special Milk","7 CFR Part 220 — SBP","7 CFR Part 225 — SFSP","7 CFR Part 226 — CACFP","7 CFR Part 245 — Eligibility","7 CFR Part 292 — Summer EBT","Current as of April 13, 2026"].map(l => (
+            {["7 CFR Part 210 — NSLP","7 CFR Part 215 — Special Milk","7 CFR Part 220 — SBP","7 CFR Part 225 — SFSP","7 CFR Part 226 — CACFP","7 CFR Part 245 — Eligibility","7 CFR Part 246 — WIC","7 CFR Part 247 — CSFP","7 CFR Part 292 — Summer EBT","Auto-synced from eCFR"].map(l => (
               <div key={l} style={S.panelCovLine}>{l}</div>
             ))}
           </div>
@@ -243,7 +244,7 @@ export default function App() {
             ))}
             <div style={S.sideDivider} />
             <div style={S.sideLabel}>KNOWLEDGE BASE</div>
-            {["7 CFR Parts 210 - 245 - 292","7 CFR Parts 215 - 220 - 225 - 226","7 CFR Parts 227 - 235 - 240","Current as of April 2026"].map(l => (
+            {["7 CFR 210 - 215 - 220 - 225","7 CFR 226 - 227 - 235 - 240","7 CFR 245 - 246 - 247 - 292","Auto-synced from eCFR"].map(l => (
               <div key={l} style={{ fontSize: 10.5, color: "#8ab0c8", padding: "2px 16px", fontFamily: "monospace" }}>{l}</div>
             ))}
             <button style={S.sideWarnBtn} onClick={() => setShowModal(true)}>&#9888; View Disclaimer</button>
@@ -282,7 +283,7 @@ export default function App() {
                   <span style={{ fontFamily: "'Georgia',serif", fontSize: 36, fontWeight: 700, color: A }}>AI</span>
                 </div>
                 <h2 style={{ fontFamily: "'Georgia',serif", fontSize: 20, color: N, marginBottom: 10 }}>What can I help you with?</h2>
-                <p style={{ fontSize: 14, color: TM, lineHeight: 1.7, marginBottom: 22 }}>Type any USDA Child Nutrition Program regulatory question. Answers are drawn directly from official Federal Register regulatory text, current as of April 2026.</p>
+                <p style={{ fontSize: 14, color: TM, lineHeight: 1.7, marginBottom: 22 }}>Type any USDA Child Nutrition Program regulatory question. Answers are drawn directly from official Federal Register regulatory text via the live eCFR API.</p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "center", marginBottom: 24 }}>
                   {SAMPLE_QS.map(q => (
                     <button key={q} className="prompt-chip" onClick={() => sendMessage(q)} disabled={loading}>{q}</button>
@@ -301,6 +302,14 @@ export default function App() {
                 <div style={msg.from === "user" ? S.userBubble : S.aiBubble}
                   dangerouslySetInnerHTML={{ __html: msg.text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>").replace(/\n/g, "<br/>") }}
                 />
+                {msg.from === "ai" && msg.sources && msg.sources.length > 0 && (
+                  <div style={S.sources}>
+                    <div style={S.sourcesLabel}>Sources:</div>
+                    {msg.sources.map((src, idx) => (
+                      <span key={idx} style={S.sourceTag}>{src}</span>
+                    ))}
+                  </div>
+                )}
                 {msg.from === "user" && <span style={{ ...S.msgLabel, textAlign: "right" }}>You</span>}
               </div>
             ))}
@@ -476,6 +485,9 @@ const S = {
   msgLabel: { fontSize: 10.5, color: TL, letterSpacing: 0.3 },
   userBubble: { background: N, color: W, padding: "12px 18px", maxWidth: "68%", fontSize: 14, lineHeight: 1.65 },
   aiBubble: { background: W, border: "1px solid " + BD, borderLeft: "3px solid " + A, padding: "14px 18px", maxWidth: "82%", fontSize: 14, color: N, lineHeight: 1.85 },
+  sources: { marginTop: 8, paddingTop: 10, borderTop: "1px solid " + BD, display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center", maxWidth: "82%" },
+  sourcesLabel: { fontSize: 10, color: TL, textTransform: "uppercase", letterSpacing: 0.8, fontWeight: 700, marginRight: 4 },
+  sourceTag: { fontSize: 11, padding: "3px 8px", background: AP, color: N, border: "1px solid #b3d9ef", fontFamily: "monospace" },
   inputArea: { background: W, borderTop: "1px solid " + BD, padding: "14px 20px 16px" },
   inputWrap: { display: "flex", gap: 10, alignItems: "flex-end", background: OF, border: "1.5px solid " + BD, padding: "10px 14px" },
   textarea: { flex: 1, background: "transparent", border: "none", outline: "none", resize: "none", color: N, fontSize: 14, lineHeight: 1.6, maxHeight: 120, overflowY: "auto" },
