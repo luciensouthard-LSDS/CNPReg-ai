@@ -143,7 +143,7 @@ export default function App() {
               <span style={{ color: AL }}>AI</span>
             </h1>
             <p style={S.heroTagline}>Instant regulatory answers for state agency Child Nutrition Program administrators.</p>
-            <p style={S.heroSub}>Grounded in official Federal Register regulatory text across 12 CFR parts — cited, precise, and completely free.</p>
+            <p style={S.heroSub}>Grounded in official Federal Register regulatory text across 12 CFR parts, plus select USDA FNS policy memos & guidance — cited, precise, and completely free.</p>
             <div style={S.heroCtas}>
               <button style={S.ctaPrimary} onClick={() => setScreen("chat")}>Start Asking Questions</button>
             </div>
