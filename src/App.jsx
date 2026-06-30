@@ -145,7 +145,10 @@ export default function App() {
         <GlobalCSS />
         <div style={S.landing}>
           <header style={S.header}>
-            <LSLogo />
+            <a href="https://www.cnpsuite.com" target="_blank" rel="noopener noreferrer" className="cnpsuite-link" style={{ fontSize: 17, gap: 9 }}>
+              <SuiteMark size={24} />
+              <span>CNP<span style={{ fontFamily: "'Georgia', serif" }}>Suite</span></span>
+            </a>
             <div style={S.headerRight}>
               <button style={S.linkBtn} onClick={openInfo}>Disclaimer</button>
               <button style={S.startBtn} onClick={openGate}>Start &rarr;</button>
@@ -182,6 +185,8 @@ export default function App() {
               <button style={S.warnLink} onClick={openInfo}>Full disclaimer</button>
             </span>
           </div>
+
+          <SiteFooter />
         </div>
         {showModal && <DisclaimerModal onClose={() => setShowModal(false)} onAccept={acceptModal} intent={modalIntent} />}
       </>
@@ -249,7 +254,7 @@ export default function App() {
 
           {messages.map((msg, i) => (
             <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: msg.from === "user" ? "flex-end" : "flex-start", gap: 4 }}>
-              {msg.from === "ai" && <span style={S.msgLabel}>CNPReg AI &middot; LS Digital Solutions, LLC</span>}
+              {msg.from === "ai" && <span style={S.msgLabel}>CNPReg AI</span>}
               <div
                 style={msg.from === "user" ? S.userBubble : S.aiBubble}
                 dangerouslySetInnerHTML={{ __html: msg.text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>").replace(/\n/g, "<br/>") }}
@@ -268,7 +273,7 @@ export default function App() {
 
           {loading && (
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 4 }}>
-              <span style={S.msgLabel}>CNPReg AI &middot; LS Digital Solutions, LLC</span>
+              <span style={S.msgLabel}>CNPReg AI</span>
               <div style={S.aiBubble}>
                 <div style={{ display: "flex", gap: 5, alignItems: "center", padding: "2px 0" }}>
                   {[0, 0.15, 0.3].map((d, i) => (
@@ -300,6 +305,8 @@ export default function App() {
             >&#8593;</button>
           </div>
         </div>
+
+        <SiteFooter />
       </div>
       {showModal && <DisclaimerModal onClose={() => setShowModal(false)} onAccept={acceptModal} intent={modalIntent} />}
     </>
@@ -336,7 +343,13 @@ function DisclaimerModal({ onClose, onAccept, intent }) {
 /* ──────────────────────── LOGO ──────────────────────── */
 function LSLogo() {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <a
+      href="https://www.lsdigitalsolutions.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="LS Digital Solutions"
+      style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}
+    >
       <div style={{ width: 30, height: 30, background: BLUE, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
         <span style={{ fontFamily: "'Georgia', serif", fontSize: 15, fontWeight: 700, color: WHITE, lineHeight: 1 }}>LS</span>
       </div>
@@ -344,7 +357,31 @@ function LSLogo() {
         <span style={{ fontFamily: "'Georgia', serif", fontSize: 12, fontWeight: 700, color: WHITE, letterSpacing: 1.5, textTransform: "uppercase" }}>Digital Solutions</span>
         <span style={{ fontFamily: "'Segoe UI', sans-serif", fontSize: 8.5, color: GREY_TEXT, letterSpacing: 0.8, textTransform: "uppercase" }}>Child Nutrition Program Technology</span>
       </div>
-    </div>
+    </a>
+  );
+}
+
+/* ──────────────────────── SITE FOOTER ────────────────────────
+   The CNPSuite brand now leads the landing header (top-left, linked
+   to the hub). The footer carries the LS Digital Solutions lockup,
+   centered, as the quiet company credit on both screens. The lockup
+   links to the company site and opens in a new tab. */
+function SuiteMark({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100" aria-hidden="true" style={{ flexShrink: 0, display: "block" }}>
+      <rect x="6" y="6" width="40" height="40" rx="9" fill="#3475B4" />
+      <rect x="54" y="6" width="40" height="40" rx="9" fill="#32533D" />
+      <rect x="6" y="54" width="40" height="40" rx="9" fill="#BD8D29" />
+      <rect x="54" y="54" width="40" height="40" rx="9" fill="none" stroke={GREY_TEXT} strokeWidth="6" />
+    </svg>
+  );
+}
+
+function SiteFooter() {
+  return (
+    <footer style={S.siteFooter}>
+      <LSLogo />
+    </footer>
   );
 }
 
@@ -364,6 +401,10 @@ function GlobalCSS() {
       .topic-row { display: block; width: 100%; text-align: left; background: transparent; border: none; color: ${NAVY}; padding: 9px 16px; font-size: 13px; cursor: pointer; transition: background 0.12s; }
       .topic-row:hover:not(:disabled) { background: ${BLUE_BG}; }
       .topic-row:disabled { opacity: 0.45; cursor: not-allowed; }
+      .footer-link { color: ${GREY_TEXT}; font-size: 12px; text-decoration: none; letter-spacing: 0.3px; transition: color 0.15s; }
+      .footer-link:hover { color: ${BLUE_LIGHT}; }
+      .cnpsuite-link { display: inline-flex; align-items: center; gap: 7px; color: ${WHITE}; font-size: 13px; font-weight: 700; text-decoration: none; transition: opacity 0.15s; }
+      .cnpsuite-link:hover { opacity: 0.8; }
     `}</style>
   );
 }
@@ -388,6 +429,9 @@ const S = {
   warnStrip: { background: WARN_BG, borderTop: "1px solid " + WARN_BD, padding: "12px 28px", display: "flex", alignItems: "flex-start", gap: 10, flexShrink: 0 },
   warnText: { fontSize: 12.5, color: "#78350f", lineHeight: 1.6 },
   warnLink: { background: "none", border: "none", color: WARN, fontWeight: 700, cursor: "pointer", fontSize: 12.5, padding: 0, textDecoration: "underline" },
+
+  /* site footer */
+  siteFooter: { background: NAVY, borderTop: "1px solid #002a52", padding: "13px 28px", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, flexShrink: 0, flexWrap: "wrap" },
 
   /* chat shell */
   chatRoot: { display: "flex", flexDirection: "column", height: "100vh", overflow: "hidden", background: GREY_BG },
