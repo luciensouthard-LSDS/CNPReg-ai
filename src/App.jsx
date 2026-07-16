@@ -149,7 +149,8 @@ export default function App() {
               <SuiteMark size={24} />
               <span>CNP<span style={{ fontFamily: "'Georgia', serif" }}>Suite</span></span>
             </a>
-            <div style={S.headerRight}>
+          <div style={S.headerRight}>
+              <button style={S.linkBtn} onClick={() => { window.location.href = "/coverage" }}>What's Included</button>   {/* ← ADD THIS LINE */}
               <button style={S.linkBtn} onClick={openInfo}>Disclaimer</button>
               <button style={S.startBtn} onClick={openGate}>Start &rarr;</button>
             </div>
@@ -175,6 +176,19 @@ export default function App() {
                 </div>
               ))}
             </div>
+            <div style={S.props}>
+              {VALUE_PROPS.map((p) => (
+                <div key={p} style={S.propItem}>
+                  <span style={S.propCheck}>&#10003;</span> {p}
+                </div>
+              ))}
+            </div>
+            <button
+              onClick={() => { window.location.href = "/coverage" }}
+              style={{ background: "none", border: "none", color: BLUE_LIGHT, cursor: "pointer", fontSize: 13.5, marginTop: 22, textDecoration: "underline", letterSpacing: 0.3 }}
+            >
+              See what&apos;s included &rarr;
+            </button>
           </main>
 
           <div style={S.warnStrip}>
